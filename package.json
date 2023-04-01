@@ -1,0 +1,19 @@
+{
+  "name": "market-sp1-m4-Gui2912",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Kenzie-Academy-Brasil-Developers/market-sp1-m4-Gui2912.git",
+  "author": "Gui2912 <dainize22@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --ignore-watch=node_modules --rs --cls src/app.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
