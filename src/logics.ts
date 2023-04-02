@@ -63,25 +63,18 @@ const listProductById = (req: Request, res: Response): Response => {
 
 const updateProduct = (req: Request, res: Response): Response => {
     const id = res.locals.id;
-    const newInfos: any = req.body;
+    const newInfos = req.body;
 
-    const newInfosObj = {
-        name: newInfos.name,
-        price: newInfos.price,
-        weight: newInfos.weight,
-        calories: newInfos.calories
-    }
-    console.log(newInfosObj);
-    
+    const product = market[id - 1];
 
-    const updatedProduct:IProduct = {
-        ...market[id - 1],
-        ...newInfosObj,
+    const updatedProduct = {
+        ...product,
+        ...((({ id, section, expirationDate, ...rest }) => rest)(newInfos)),
     };
 
-    market[id - 1] = updatedProduct
+    market[id - 1] = updatedProduct;
 
-    return res.status(200).json(market[id - 1]);
+    return res.status(200).json(updatedProduct);
 };
 
 const deleteProduct = (req: Request, res: Response): Response => {
