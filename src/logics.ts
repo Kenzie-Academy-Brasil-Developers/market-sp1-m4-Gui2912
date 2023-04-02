@@ -65,11 +65,21 @@ const updateProduct = (req: Request, res: Response): Response => {
     const id = res.locals.id;
     const newInfos = req.body;
 
+    const verifyNameIsUnique: boolean = market.some((elt) =>
+        Object.values(newInfos).includes(elt.name)
+    );
+
+    if (verifyNameIsUnique) {
+        return res.status(409).json({
+            error: "Product already registered",
+        });
+    }
+
     const product = market[id - 1];
 
     const updatedProduct = {
         ...product,
-        ...((({ id, section, expirationDate, ...rest }) => rest)(newInfos)),
+        ...(({ id, section, expirationDate, ...rest }) => rest)(newInfos),
     };
 
     market[id - 1] = updatedProduct;
